@@ -2,7 +2,7 @@ import torch
 from PIL import Image
 from torchvision.transforms import InterpolationMode
 
-from open_clip.transform import image_transform
+from open_clip.transform import ResizeKeepRatio, image_transform
 
 
 def test_image_transform_scalar_zero_mean_not_replaced_by_default():
@@ -15,3 +15,10 @@ def test_image_transform_scalar_zero_mean_not_replaced_by_default():
 def test_image_transform_train_uses_requested_interpolation():
     transform = image_transform(32, is_train=True, interpolation="bilinear")
     assert transform.transforms[0].interpolation == InterpolationMode.BILINEAR
+
+
+def test_resize_keep_ratio_repr():
+    transform = ResizeKeepRatio(224, interpolation=InterpolationMode.BICUBIC, longest=1)
+    assert repr(transform) == (
+        "ResizeKeepRatio(size=(224, 224), interpolation=InterpolationMode.BICUBIC, longest=1.000)"
+    )

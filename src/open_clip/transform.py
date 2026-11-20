@@ -211,7 +211,7 @@ class ResizeKeepRatio:
 
     def __repr__(self):
         format_string = self.__class__.__name__ + '(size={0}'.format(self.size)
-        format_string += f', interpolation={self.interpolation})'
+        format_string += f', interpolation={self.interpolation}'
         format_string += f', longest={self.longest:.3f})'
         return format_string
 
